@@ -6,20 +6,16 @@ fn main() {
 
         let mut input = String::new();
 
-        io::stdin()
-            .read_line(&mut input)
-            .expect("stub");
+        io::stdin().read_line(&mut input).expect("stub");
 
-        let splitted_words : Vec<&str> = input.trim().split(' ').collect();
+        let splitted_words: Vec<&str> = input.trim().split(' ').collect();
 
-        println!("inputted: {:?}", splitted_words);
-
-        let location : usize = match splitted_words.iter().position(|&word| word == "Nemo") {
-            Some(location) => location,
-            None => usize::MAX,
+        match splitted_words.iter().position(|&word| word == "Nemo") {
+            Some(mut location) => {
+                location += 1;
+                println!("I found Nemo at {location}!")
+            }
+            None => println!("I can't find Nemo :("),
         };
-                                             
-
-        println!("{location}")
     }
 }
